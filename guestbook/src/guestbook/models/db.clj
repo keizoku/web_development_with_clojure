@@ -1,9 +1,11 @@
 (ns guestbook.models.db
-  (:require [clojure.java.jdbc :as sql])
+  (:require [clojure.java.jdbc :as sql]
+            [clj-time.coerce :as c])
   (:import java.sql.DriverManager))
 
-(def db {:classname "org.sqlite.JDBC", :subprotocol "sqlite",
-:subname "db.sq3"})
+(def db {:classname "org.sqlite.JDBC", :subprotocol "postgresql",
+:subname "//localhost:5432/guestbook"
+         })
 
 
 (defn create-guestbook-table []
@@ -11,7 +13,9 @@
     db
     (sql/create-table
      :guestbook
-     [:id "INTEGER PRIMARY KEY AUTOINCREMENT"] [:timestamp "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"] [:name "TEXT"]
+     [:id "serial"]
+     [:timestamp "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"]
+     [:name "TEXT"]
      [:message "TEXT"])
     (sql/do-commands "CREATE INDEX timestamp_index ON guestbook (timestamp)")))
 
@@ -26,5 +30,5 @@
     (sql/insert-values
      :guestbook
      [:name :message :timestamp]
-     [name message (new java.util.Date)])))
+     [name message (c/to-timestamp (c/from-date (new java.util.Date)))])))
 
