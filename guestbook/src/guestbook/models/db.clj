@@ -5,6 +5,8 @@
 
 (def db {:classname "org.sqlite.JDBC", :subprotocol "postgresql",
 :subname "//localhost:5432/guestbook"
+; :user postgres
+; :password postgres
          })
 
 
