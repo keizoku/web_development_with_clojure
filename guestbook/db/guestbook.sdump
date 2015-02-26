@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: guestbook; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: guestbook; Type: TABLE; Schema: public; Owner: takahasi; Tablespace: 
 --
 
 CREATE TABLE guestbook (
@@ -41,10 +41,10 @@ CREATE TABLE guestbook (
 );
 
 
-ALTER TABLE guestbook OWNER TO postgres;
+ALTER TABLE guestbook OWNER TO takahasi;
 
 --
--- Name: guestbook_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: guestbook_id_seq; Type: SEQUENCE; Schema: public; Owner: takahasi
 --
 
 CREATE SEQUENCE guestbook_id_seq
@@ -55,36 +55,36 @@ CREATE SEQUENCE guestbook_id_seq
     CACHE 1;
 
 
-ALTER TABLE guestbook_id_seq OWNER TO postgres;
+ALTER TABLE guestbook_id_seq OWNER TO takahasi;
 
 --
--- Name: guestbook_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: guestbook_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: takahasi
 --
 
 ALTER SEQUENCE guestbook_id_seq OWNED BY guestbook.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: takahasi
 --
 
 ALTER TABLE ONLY guestbook ALTER COLUMN id SET DEFAULT nextval('guestbook_id_seq'::regclass);
 
 
 --
--- Name: timestamp_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: timestamp_index; Type: INDEX; Schema: public; Owner: takahasi; Tablespace: 
 --
 
 CREATE INDEX timestamp_index ON guestbook USING btree ("timestamp");
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: postgres
+-- Name: public; Type: ACL; Schema: -; Owner: takahasi
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
+REVOKE ALL ON SCHEMA public FROM takahasi;
+GRANT ALL ON SCHEMA public TO takahasi;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
