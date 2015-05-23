@@ -8,9 +8,6 @@
             [guestbook.routes.home :refer [home-routes]]
             [guestbook.models.db :as db]))
 
-(defn init []
-  (println "guestbook is starting"))
-
 (defn destroy []
   (println "guestbook is shutting down"))
 
